@@ -1,0 +1,106 @@
+# JFrog Curation test list: one package per line:  <name> <version spec>  # <intent tag>
+# Specs use pip syntax (>=, <, ~=, ==, comma-separated). Tags describe what each line is meant to exercise;
+# the actual outcome depends on your Curation policies. Add or remove lines freely.
+# --- popular libraries, ranges (typically approved) ---
+requests >=2.28,<3  # popular
+flask >=2.3,<4  # popular
+django >=4.2,<5  # popular
+numpy >=1.24,<2  # popular
+pandas >=2.0,<3  # popular
+urllib3 >=1.26,<3  # popular
+certifi >=2023.1.1  # popular
+python-dateutil >=2.8,<3  # popular
+pyyaml >=6.0,<7  # popular
+jinja2 >=3.1,<4  # popular
+werkzeug >=3.0,<4  # popular
+click >=8.1,<9  # popular
+sqlalchemy >=2.0,<3  # popular
+psycopg2-binary >=2.9,<3  # popular
+pymysql >=1.1,<2  # popular
+redis >=5.0,<6  # popular
+celery >=5.3,<6  # popular
+gunicorn >=21.0  # popular
+uvicorn >=0.23,<1  # popular
+fastapi >=0.100,<1  # popular
+pydantic >=2.0,<3  # popular
+httpx >=0.24,<1  # popular
+aiohttp >=3.8,<4  # popular
+pytest >=7.4,<9  # popular
+tqdm >=4.65,<5  # popular
+rich >=13.5,<14  # popular
+typer >=0.9,<1  # popular
+beautifulsoup4 >=4.12,<5  # popular
+lxml >=4.9,<6  # popular
+pillow >=10.0,<11  # popular
+cryptography >=41.0,<44  # popular
+paramiko >=3.3,<4  # popular
+pyjwt >=2.8,<3  # popular
+scipy >=1.10,<2  # popular
+matplotlib >=3.7,<4  # popular
+scikit-learn >=1.3,<2  # popular
+alembic >=1.12,<2  # popular
+marshmallow >=3.20,<4  # popular
+protobuf >=4.24,<6  # popular
+grpcio >=1.57,<2  # popular
+pyopenssl >=23.2  # popular
+tornado >=6.3,<7  # popular
+babel >=2.12,<3  # popular
+sphinx >=7.0,<9  # popular
+pyparsing >=3.1,<4  # popular
+# --- frequently released packages, open ranges (newest release may be too new => compliant older version) ---
+boto3 >=1.28  # frequent-release
+botocore >=1.31  # frequent-release
+s3transfer >=0.6  # frequent-release
+awscli >=1.29  # frequent-release
+google-api-python-client >=2.90  # frequent-release
+ruff >=0.1  # frequent-release
+setuptools >=68.0  # frequent-release
+pip >=23.0  # frequent-release
+arize >=8.40.0  # frequent-release; used in JFrog Curation demos
+pydantic-core >=2.0  # frequent-release
+# --- ranges that end in vulnerable releases ---
+django <2.2.28  # vulnerable range
+requests <2.20  # vulnerable range
+pyyaml <5.4  # vulnerable range
+urllib3 <1.26.5  # vulnerable range
+pillow <8.3  # vulnerable range
+jinja2 <2.11.3  # vulnerable range
+werkzeug <0.15.5  # vulnerable range
+cryptography <3.3  # vulnerable range
+numpy <1.22  # vulnerable range
+flask <1.0  # vulnerable range
+# --- pinned vulnerable versions ---
+django ==2.0  # known CVEs
+pyyaml ==5.1  # known CVEs
+requests ==2.19.1  # known CVEs
+urllib3 ==1.24.1  # known CVEs
+pillow ==6.2.0  # known CVEs
+cryptography ==3.2  # known CVEs
+jinja2 ==2.10  # known CVEs
+werkzeug ==0.14.1  # known CVEs
+paramiko ==2.4.0  # known CVEs
+pycrypto ==2.6.1  # known CVEs, unmaintained
+numpy ==1.16.0  # known CVEs
+pyjwt ==1.5.0  # known CVEs
+tornado ==5.1  # known CVEs
+sqlalchemy ==1.2.0  # known CVEs
+pygments ==2.5.2  # known CVEs
+lxml ==4.2.0  # known CVEs
+# --- Compliant Version Selection candidates (discovered 2026-10-16): newest release in range not offered / blocked, older allowed. Time-sensitive: re-run tools/discover_cvs.py ---
+pluggy >=1,<2  # CVS: newest release not offered
+boto3 >=1,<2  # CVS: newest release not offered
+botocore >=1,<2  # CVS: newest release not offered
+platformdirs >=4,<5  # CVS: newest release not offered
+filelock >=4,<5  # CVS: newest release not offered
+starlette >=1,<2  # CVS: newest release not offered
+wrapt >=2,<3  # CVS: newest release not offered
+openai >=3,<4  # CVS: newest release not offered
+cachetools >=7,<8  # CVS: newest release not offered
+fonttools >=4,<5  # CVS: newest release not offered
+langchain >=1,<2  # CVS: newest release not offered
+anthropic >=1,<2  # CVS: newest release not offered
+pypdf >=6,<7  # CVS: newest release not offered
+markdown >=3,<4  # CVS: newest release not offered
+transformers >=5,<6  # CVS: newest release not offered
+litellm >=1,<2  # CVS: newest release not offered
+playwright >=1,<2  # CVS: newest release not offered

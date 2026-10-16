@@ -1,0 +1,112 @@
+# JFrog Curation test list: one package per line:  <name> <version spec>  # <intent tag>
+# Specs are npm semver ranges (^, ~, <, >=, x). Tags describe what each line is meant to exercise;
+# the actual outcome depends on your Curation policies. Add or remove lines freely.
+# --- popular libraries, caret ranges (typically approved) ---
+express ^4.18.0  # popular
+react ^18.2.0  # popular
+react-dom ^18.2.0  # popular
+vue ^3.3.0  # popular
+typescript ^5.0.0  # popular
+webpack ^5.88.0  # popular
+eslint ^8.45.0  # popular
+prettier ^3.0.0  # popular
+jest ^29.6.0  # popular
+mocha ^10.2.0  # popular
+chalk ^4.1.2  # popular
+commander ^11.0.0  # popular
+debug ^4.3.4  # popular
+dotenv ^16.3.0  # popular
+uuid ^9.0.0  # popular
+moment ^2.29.0  # popular
+dayjs ^1.11.0  # popular
+date-fns ^2.30.0  # popular
+rxjs ^7.8.0  # popular
+redux ^4.2.0  # popular
+zod ^3.22.0  # popular
+yargs ^17.7.0  # popular
+glob ^10.3.0  # popular
+rimraf ^5.0.0  # popular
+semver ^7.5.0  # popular
+helmet ^7.0.0  # popular
+mongoose ^8.0.0  # popular
+pg ^8.11.0  # popular
+mysql2 ^3.6.0  # popular
+ioredis ^5.3.0  # popular
+socket.io ^4.7.0  # popular
+ws ^8.13.0  # popular
+nodemailer ^6.9.0  # popular
+winston ^3.10.0  # popular
+js-yaml ^4.1.0  # popular
+fs-extra ^11.1.0  # popular
+# --- tilde ranges on well-known libraries ---
+lodash ~4.17.0  # popular
+axios ~1.6.0  # popular
+jsonwebtoken ~9.0.0  # popular
+bcrypt ~5.1.0  # popular (native module, install scripts disabled)
+passport ~0.6.0  # popular
+# --- frequently released packages, open ranges (newest release may be too new => compliant older version) ---
+@types/node ^20.0.0  # frequent-release
+@aws-sdk/client-s3 ^3.400.0  # frequent-release
+aws-sdk ^2.1400.0  # frequent-release
+@babel/core ^7.22.0  # frequent-release
+core-js ^3.32.0  # frequent-release
+caniuse-lite ^1.0.30001500  # frequent-release
+browserslist ^4.21.0  # frequent-release
+@types/react ^18.2.0  # frequent-release
+rollup ^4.0.0  # frequent-release
+vite ^5.0.0  # frequent-release
+esbuild ^0.19.0  # frequent-release
+@swc/core ^1.3.0  # frequent-release
+@types/lodash ^4.14.0  # frequent-release
+@types/express ^4.17.0  # frequent-release
+jfrog-curation-canary ^1.0.0  # published daily by JFrog; newest version is always very new
+# --- ranges that end in vulnerable releases ---
+lodash <4.17.12  # vulnerable range (prototype pollution)
+minimist <1.2.6  # vulnerable range
+node-fetch <2.6.7  # vulnerable range
+express <4.17.3  # vulnerable range
+axios <0.21.2  # vulnerable range
+handlebars <4.7.7  # vulnerable range
+jquery <3.5.0  # vulnerable range
+# --- transitive dependency risk ---
+optimist ^0.6.1  # pulls minimist 0.0.10 (CVE-2021-44906)
+request ^2.88.0  # deprecated, old transitive dependencies
+# --- pinned vulnerable versions ---
+lodash 4.17.11  # known CVEs
+minimist 0.0.8  # known CVEs
+node-fetch 2.6.0  # known CVEs
+serialize-javascript 2.1.0  # known CVEs
+y18n 4.0.0  # known CVEs
+ini 1.3.5  # known CVEs
+glob-parent 5.1.0  # known CVEs
+jsonwebtoken 8.5.1  # known CVEs
+loader-utils 1.2.3  # known CVEs
+shelljs 0.8.3  # known CVEs
+jfrog-curation-malicious-dummy 1.0.0  # JFrog test package flagged malicious
+verdaccio-tarball-local-storage 38.1.6  # malicious
+# --- Compliant Version Selection candidates: newest release in the range is brand new / not offered by Curation on the discovery run (2026-10-16),
+#     so a range install should be served the newest allowed older version. Time-sensitive: re-run tools/discover_cvs.py to refresh. ---
+@typescript-eslint/parser ^8.0.0  # CVS: newest release not offered
+typescript-eslint ^8.0.0  # CVS: newest release not offered
+@supabase/realtime-js ^2.0.0  # CVS: newest release not offered
+@supabase/supabase-js ^2.0.0  # CVS: newest release not offered
+oxlint ^1.0.0  # CVS: newest release not offered
+cropperjs ^2.0.0  # CVS: newest release not offered
+zod ^4.0.0  # CVS: newest release not offered
+@typescript-eslint/eslint-plugin ^8.0.0  # CVS: newest release not offered
+effect ^4.0.0  # CVS: newest release not offered
+@tanstack/router-plugin ^1.0.0  # CVS: newest release not offered
+ts-jest ^29.0.0  # CVS: newest release not offered
+wrangler ^4.0.0  # CVS: newest release not offered
+@tanstack/react-router ^1.0.0  # CVS: newest release not offered
+@tanstack/react-start ^1.0.0  # CVS: newest release not offered
+typebox ^1.0.0  # CVS: newest release not offered
+remeda ^2.0.0  # CVS: newest release not offered
+ox ^1.0.0  # CVS: newest release not offered
+better-auth ^1.0.0  # CVS: newest release not offered
+@graphql-tools/executor ^2.0.0  # CVS: newest release not offered
+openapi3-ts ^4.0.0  # CVS: newest release not offered
+ts-pattern ^5.0.0  # CVS: newest release not offered
+pinia ^4.0.0  # CVS: newest release not offered
+viem ^2.0.0  # CVS: newest release not offered
+# NOTE: npm packages flagged malicious by JFrog are usually unpublished upstream within hours; only JFrog's test dummy above is stable.

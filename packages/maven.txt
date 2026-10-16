@@ -1,0 +1,115 @@
+# JFrog Curation test list: one package per line:  <groupId>:<artifactId> <version spec>  # <intent tag>
+# Specs use Maven version-range syntax: [1.0,2.0)  [1.0,)  (,2.0]  [1.5] or a plain version for an exact pin.
+# Tags describe what each line is meant to exercise; the actual outcome depends on your Curation policies.
+# --- popular libraries, ranges (typically approved) ---
+com.google.guava:guava [32.0,33.0)  # popular
+org.apache.commons:commons-lang3 [3.12,3.15)  # popular
+commons-io:commons-io [2.11,2.16)  # popular
+org.apache.commons:commons-collections4 [4.4,4.5)  # popular
+com.fasterxml.jackson.core:jackson-databind [2.15,2.18)  # popular
+com.fasterxml.jackson.core:jackson-core [2.15,2.18)  # popular
+com.google.code.gson:gson [2.10,2.12)  # popular
+org.slf4j:slf4j-api [2.0,2.1)  # popular
+ch.qos.logback:logback-classic [1.4,1.5)  # popular
+org.junit.jupiter:junit-jupiter-api [5.9,5.11)  # popular
+org.mockito:mockito-core [5.0,6.0)  # popular
+org.assertj:assertj-core [3.24,4.0)  # popular
+org.springframework:spring-core [6.0,6.2)  # popular
+org.springframework:spring-web [6.0,6.2)  # popular
+org.springframework:spring-context [6.0,6.2)  # popular
+org.springframework.boot:spring-boot [3.1,3.4)  # popular
+org.springframework.boot:spring-boot-starter-web [3.1,3.4)  # popular
+org.hibernate.orm:hibernate-core [6.2,6.5)  # popular
+org.apache.httpcomponents.client5:httpclient5 [5.2,5.4)  # popular
+org.apache.httpcomponents:httpcore [4.4,4.5)  # popular
+com.squareup.okhttp3:okhttp [4.11,5.0)  # popular
+org.projectlombok:lombok [1.18,1.19)  # popular
+com.mysql:mysql-connector-j [8.0,9.0)  # popular
+org.postgresql:postgresql [42.6,43.0)  # popular
+com.zaxxer:HikariCP [5.0,6.0)  # popular
+org.yaml:snakeyaml [2.0,3.0)  # popular
+io.netty:netty-handler [4.1.95,4.2)  # popular
+io.netty:netty-codec-http [4.1.95,4.2)  # popular
+org.apache.maven:maven-core [3.9,4.0)  # popular
+org.apache.tomcat.embed:tomcat-embed-core [10.1,11.0)  # popular
+org.eclipse.jetty:jetty-server [11.0,12.0)  # popular
+com.h2database:h2 [2.2,3.0)  # popular
+org.apache.kafka:kafka-clients [3.5,3.8)  # popular
+redis.clients:jedis [4.4,6.0)  # popular
+org.mongodb:mongodb-driver-sync [4.10,5.2)  # popular
+com.nimbusds:nimbus-jose-jwt [9.31,10.0)  # popular
+io.jsonwebtoken:jjwt-api [0.11,0.13)  # popular
+org.apache.commons:commons-text [1.10,1.13)  # popular
+commons-codec:commons-codec [1.15,1.18)  # popular
+org.apache.commons:commons-compress [1.24,1.27)  # popular
+com.github.ben-manes.caffeine:caffeine [3.1,3.2)  # popular
+org.apache.tomcat.embed:tomcat-embed-websocket [10.1,11.0)  # popular
+org.hibernate.validator:hibernate-validator [8.0,9.0)  # popular
+io.grpc:grpc-netty [1.57,1.70)  # popular
+com.google.protobuf:protobuf-java [3.24,4.0)  # popular
+org.apache.velocity:velocity-engine-core [2.3,3.0)  # popular
+org.freemarker:freemarker [2.3.32,2.4)  # popular
+org.thymeleaf:thymeleaf [3.1,3.2)  # popular
+org.eclipse.jetty:jetty-http [11.0,12.0)  # popular
+io.undertow:undertow-core [2.3,2.4)  # popular
+org.apache.zookeeper:zookeeper [3.8,3.10)  # popular
+# --- frequently released packages, open ranges (newest release may be too new => compliant older version) ---
+com.amazonaws:aws-java-sdk-core [1.12,)  # frequent-release
+com.google.cloud:google-cloud-storage [2.20,)  # frequent-release
+io.netty:netty-all [4.1,)  # frequent-release
+org.jetbrains.kotlin:kotlin-reflect [1.9,)  # frequent-release
+org.apache.logging.log4j:log4j-api [2.17,)  # frequent-release
+org.apache.logging.log4j:log4j-core [2.17,)  # frequent-release
+io.micrometer:micrometer-core [1.11,)  # frequent-release
+org.testcontainers:testcontainers [1.19,)  # frequent-release
+# --- ranges that end in vulnerable releases ---
+org.apache.logging.log4j:log4j-core [2.0,2.15)  # vulnerable range (Log4Shell)
+org.apache.commons:commons-text [1.0,1.10)  # vulnerable range (Text4Shell)
+com.fasterxml.jackson.core:jackson-databind [2.9,2.10)  # vulnerable range
+org.springframework:spring-webmvc [5.3,5.3.18)  # vulnerable range (Spring4Shell)
+org.yaml:snakeyaml [1.20,1.31)  # vulnerable range
+org.apache.struts:struts2-core [2.3,2.4)  # vulnerable range
+commons-collections:commons-collections [3.0,3.2.2)  # vulnerable range
+io.netty:netty-all [4.1.0.Final,4.1.60.Final)  # vulnerable range
+commons-fileupload:commons-fileupload [1.0,1.3.3)  # vulnerable range
+org.apache.shiro:shiro-core [1.0,1.7)  # vulnerable range
+# --- pinned vulnerable versions / known malicious ---
+org.apache.logging.log4j:log4j-core 2.14.1  # known CVEs (Log4Shell)
+org.apache.commons:commons-text 1.9  # known CVEs (Text4Shell)
+org.springframework:spring-webmvc 5.3.17  # known CVEs (Spring4Shell)
+com.fasterxml.jackson.core:jackson-databind 2.9.8  # known CVEs
+commons-collections:commons-collections 3.2.1  # known CVEs
+org.apache.struts:struts2-core 2.3.32  # known CVEs
+io.netty:netty-all 4.1.44.Final  # known CVEs
+org.yaml:snakeyaml 1.26  # known CVEs
+com.thoughtworks.xstream:xstream 1.4.15  # known CVEs
+com.alibaba:fastjson 1.2.24  # known CVEs
+org.apache.shiro:shiro-core 1.2.4  # known CVEs
+commons-fileupload:commons-fileupload 1.3.1  # known CVEs
+com.h2database:h2 1.4.196  # known CVEs
+mysql:mysql-connector-java 5.1.40  # known CVEs
+org.apache.tomcat.embed:tomcat-embed-core 9.0.30  # known CVEs
+org.apache.velocity:velocity 1.7  # known CVEs
+org.codehaus.groovy:groovy 2.4.3  # known CVEs
+com.google.protobuf:protobuf-java 3.7.0  # known CVEs
+org.apache.activemq:activemq-client 5.15.0  # known CVEs
+org.apache.zookeeper:zookeeper 3.4.6  # known CVEs
+io.github.andr3colonel:jfrog_dummy 1.0.0  # JFrog test package flagged malicious
+# --- Compliant Version Selection candidates (discovered 2026-10-16): newest release in range not offered / blocked, older allowed. Time-sensitive: re-run tools/discover_cvs.py ---
+software.amazon.awssdk:sns [2.0,3.0)  # CVS: newest release not offered
+software.amazon.awssdk:sts [2.0,3.0)  # CVS: newest release not offered
+software.amazon.awssdk:s3 [2.0,3.0)  # CVS: newest release not offered
+software.amazon.awssdk:lambda [2.0,3.0)  # CVS: newest release not offered
+software.amazon.awssdk:sqs [2.0,3.0)  # CVS: newest release not offered
+software.amazon.awssdk:kms [2.0,3.0)  # CVS: newest release not offered
+software.amazon.awssdk:secretsmanager [2.0,3.0)  # CVS: newest release not offered
+software.amazon.awssdk:iam [2.0,3.0)  # CVS: newest release not offered
+software.amazon.awssdk:ec2 [2.0,3.0)  # CVS: newest release not offered
+software.amazon.awssdk:dynamodb [2.0,3.0)  # CVS: newest release not offered
+io.micronaut:micronaut-core [5.0,6.0)  # CVS: newest release not offered
+org.hibernate.validator:hibernate-validator [9.0,10.0)  # CVS: newest release not offered
+com.github.ben-manes.caffeine:caffeine [3.0,4.0)  # CVS: newest release not offered
+io.grpc:grpc-netty [1.0,2.0)  # CVS: newest release not offered
+io.grpc:grpc-core [1.0,2.0)  # CVS: newest release not offered
+org.flywaydb:flyway-core [13.0,14.0)  # CVS: newest release not offered
+org.keycloak:keycloak-core [26.0,27.0)  # CVS: newest release not offered
