@@ -365,7 +365,7 @@ def test_one(eco, name, spec, note, cfg, repo, args, base, rawdir):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("ecosystems", nargs="*", metavar="ecosystem", help="npm, pypi and/or maven (default: all)")
-    ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--timeout", type=int, default=300, help="per-package timeout in seconds")
     ap.add_argument("--limit", type=int, default=0, help="only run the first N packages of each list")
     ap.add_argument("--no-upstream-check", dest="upstream_check", action="store_false",
