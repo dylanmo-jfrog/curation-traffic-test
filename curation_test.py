@@ -300,7 +300,8 @@ def newest_public(eco, name, spec, timeout=30):
             with tempfile.TemporaryDirectory(prefix="npmview-") as d:
                 Path(d, "user").write_text("")
                 Path(d, "global").write_text("")
-                env = dict(os.environ, npm_config_userconfig=str(Path(d, "user")), npm_config_globalconfig=str(Path(d, "global")))
+                env = dict(os.environ, npm_config_userconfig=str(Path(d, "user")), npm_config_globalconfig=str(Path(d, "global")),
+                           npm_config_cache=str(Path(d, "cache")), npm_config_update_notifier="false")
                 rc, out = run(["npm", "view", f"{name}@{spec}" if spec else name, "version", "--json",
                                "--registry=https://registry.npmjs.org/", "--loglevel=silent"], d, env, timeout)
             vals = json.loads(out.strip()) if rc == 0 and out.strip() else None
@@ -312,7 +313,7 @@ def newest_public(eco, name, spec, timeout=30):
             from pip._vendor.packaging.version import Version
             # pip does the lookup (it already trusts the right CA certificates on this machine)
             env = dict(os.environ, PIP_CONFIG_FILE=os.devnull, PIP_DISABLE_PIP_VERSION_CHECK="1")
-            rc, out = run([sys.executable, "-m", "pip", "index", "versions", name, "-i", "https://pypi.org/simple"],
+            rc, out = run([sys.executable, "-m", "pip", "index", "versions", name, "-i", "https://pypi.org/simple", "--no-cache-dir"],
                           tempfile.gettempdir(), env, timeout)
             m = re.search(r"Available versions:\s*(.+)", out)
             live = [v.strip() for v in m.group(1).split(",")] if m else []

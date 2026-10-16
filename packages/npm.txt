@@ -91,13 +91,11 @@ typescript-eslint ^8.0.0  # CVS: newest release not offered
 @supabase/realtime-js ^2.0.0  # CVS: newest release not offered
 @supabase/supabase-js ^2.0.0  # CVS: newest release not offered
 oxlint ^1.0.0  # CVS: newest release not offered
-cropperjs ^2.0.0  # CVS: newest release not offered
 zod ^4.0.0  # CVS: newest release not offered
 @typescript-eslint/eslint-plugin ^8.0.0  # CVS: newest release not offered
 effect ^4.0.0  # CVS: newest release not offered
 @tanstack/router-plugin ^1.0.0  # CVS: newest release not offered
 ts-jest ^29.0.0  # CVS: newest release not offered
-wrangler ^4.0.0  # CVS: newest release not offered
 @tanstack/react-router ^1.0.0  # CVS: newest release not offered
 @tanstack/react-start ^1.0.0  # CVS: newest release not offered
 typebox ^1.0.0  # CVS: newest release not offered
