@@ -22,7 +22,7 @@ export MAVEN_REPO=<your curated Maven repo>
 python3 curation_test.py
 ```
 
-Takes about 15-20 minutes. To try it quickly first: `python3 curation_test.py --limit 10`.
+Takes about 20-25 minutes. To try it quickly first: `python3 curation_test.py --limit 10`.
 To run one ecosystem: `python3 curation_test.py npm`.
 
 ## Results
