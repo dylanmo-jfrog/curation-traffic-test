@@ -155,7 +155,7 @@ def pull_pypi(name, spec, cfg, repo, timeout, tmp):
     index = f"https://{user}:{tok}@{cfg['host']}/artifactory/api/pypi/{repo}/simple"
     dest = Path(tmp, "dl")
     dest.mkdir()
-    env = dict(os.environ, PIP_CONFIG_FILE=os.devnull, PIP_DISABLE_PIP_VERSION_CHECK="1")
+    env = dict(os.environ, PIP_CONFIG_FILE=os.devnull, PIP_DISABLE_PIP_VERSION_CHECK="1", PIP_CACHE_DIR=str(Path(tmp, "pipcache")))
     rc, out = run([sys.executable, "-m", "pip", "download", f"{name}{spec}", "--no-deps", "--no-cache-dir",
                    "--dest", str(dest), "-i", index, "--progress-bar", "off"], tmp, env, timeout)
     version = ""
@@ -312,9 +312,10 @@ def newest_public(eco, name, spec, timeout=30):
             from pip._vendor.packaging.specifiers import SpecifierSet
             from pip._vendor.packaging.version import Version
             # pip does the lookup (it already trusts the right CA certificates on this machine)
-            env = dict(os.environ, PIP_CONFIG_FILE=os.devnull, PIP_DISABLE_PIP_VERSION_CHECK="1")
-            rc, out = run([sys.executable, "-m", "pip", "index", "versions", name, "-i", "https://pypi.org/simple", "--no-cache-dir"],
-                          tempfile.gettempdir(), env, timeout)
+            with tempfile.TemporaryDirectory(prefix="pipidx-") as d:
+                env = dict(os.environ, PIP_CONFIG_FILE=os.devnull, PIP_DISABLE_PIP_VERSION_CHECK="1", PIP_CACHE_DIR=d)
+                rc, out = run([sys.executable, "-m", "pip", "index", "versions", name, "-i", "https://pypi.org/simple", "--no-cache-dir"],
+                              d, env, timeout)
             m = re.search(r"Available versions:\s*(.+)", out)
             live = [v.strip() for v in m.group(1).split(",")] if m else []
             ok = list(SpecifierSet(spec or "").filter(live))
@@ -346,7 +347,11 @@ def test_one(eco, name, spec, note, cfg, repo, args, base, rawdir):
     outcome = classify(rc, out)
     latest = ""
     if args.upstream_check and outcome == "OK":
-        latest = newest_public(eco, name, spec, 60) or newest_public(eco, name, spec, 90)  # one retry for a flaky lookup
+        for attempt in range(3):  # the lookup is a convenience; retry transient network failures
+            latest = newest_public(eco, name, spec, 60 + 30 * attempt)
+            if latest:
+                break
+            time.sleep(3)
     bpkg, bpolicy, _ = block_info(out)
     safe = re.sub(r"[^A-Za-z0-9._-]+", "_", f"{name}@{spec}")
     (rawdir / f"{safe}.log").write_text(f"$ {eco} {name} {spec}\nexit={rc} outcome={outcome}\n\n" + scrub(out, cfg))
@@ -365,8 +370,8 @@ def test_one(eco, name, spec, note, cfg, repo, args, base, rawdir):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("ecosystems", nargs="*", metavar="ecosystem", help="npm, pypi and/or maven (default: all)")
-    ap.add_argument("--workers", type=int, default=8)
-    ap.add_argument("--timeout", type=int, default=300, help="per-package timeout in seconds")
+    ap.add_argument("--workers", type=int, default=6)
+    ap.add_argument("--timeout", type=int, default=600, help="per-package timeout in seconds")
     ap.add_argument("--limit", type=int, default=0, help="only run the first N packages of each list")
     ap.add_argument("--no-upstream-check", dest="upstream_check", action="store_false",
                     help="skip the read-only lookup of the newest public version on npmjs.org / pypi.org / Maven Central "
